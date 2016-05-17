@@ -1,0 +1,30 @@
+{
+  "builders": [
+      {
+        "type": "docker",
+        "image": "fedora:23",
+        "commit": true
+      }
+  ],
+  "provisioners": [
+      {
+	  "type": "shell",
+	  "inline": [
+	      "curl -L --silent --output /usr/local/bin/packer https://github.com/yoctocloud/packer/releases/download/latest/packer",
+	      "chmod +x /usr/local/bin/packer",
+	      "dnf -y update",
+	      "dnf -y install libvirt-client"
+	  ]
+      }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "vtolstov/packer",
+        "tag": "latest"
+      },
+      "docker-push"
+    ]
+  ]
+}
