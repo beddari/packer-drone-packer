@@ -8,13 +8,10 @@
   ],
   "provisioners": [
       {
-	  "type": "shell",
-	  "inline": [
-	      "curl -L --silent --output /usr/local/bin/packer https://github.com/yoctocloud/packer/releases/download/latest/packer",
-	      "chmod +x /usr/local/bin/packer",
-	      "dnf -y update",
-	      "dnf -y install libvirt-client"
-	  ]
+        "type": "shell",
+          "scripts": [
+	      "scripts/packer.sh"
+          ]
       }
   ],
   "post-processors": [
@@ -22,7 +19,8 @@
       {
         "type": "docker-tag",
         "repository": "vtolstov/packer",
-        "tag": "latest"
+        "tag": "latest",
+        "force": true
       },
       "docker-push"
     ]
