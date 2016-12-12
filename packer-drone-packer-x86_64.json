@@ -2,7 +2,7 @@
   "builders": [
       {
         "type": "docker",
-        "image": "fedora:23",
+        "image": "fedora:25",
         "commit": true
       }
   ],
