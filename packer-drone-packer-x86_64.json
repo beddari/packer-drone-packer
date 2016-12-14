@@ -20,7 +20,6 @@
         "type": "docker-tag",
         "repository": "vtolstov/drone-packer",
         "tag": "latest",
-        "force": true
       },
       "docker-push"
     ]
